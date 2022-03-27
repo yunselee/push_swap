@@ -6,7 +6,7 @@
 /*   By: yunselee <yunselee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 16:42:54 by yunselee          #+#    #+#             */
-/*   Updated: 2022/02/28 21:19:30 by yunselee         ###   ########.fr       */
+/*   Updated: 2022/03/27 21:17:31 by yunselee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,25 @@ static void	push_chunks(t_deck *a, t_deck *b, int step)
 		if (deck_back(a) <= num)
 		{
 			run_operator(pb, a, b, true);
-			run_operator(rb, a, b, true);
 			num++;
 		}
 		else if (deck_back(a) <= num + step)
 		{
 			run_operator(pb, a, b, true);
+			if(deck_back(a) > num + step)
+			{
+				run_operator(rr, a, b, true);
+			}
+			else
+			{
+				run_operator(rb, a, b, true);
+			}
 			num++;
 		}
 		else
+		{
 			run_operator(ra, a, b, true);
+		}
 	}
 }
 
